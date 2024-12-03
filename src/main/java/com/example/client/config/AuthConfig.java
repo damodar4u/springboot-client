@@ -1,15 +1,18 @@
 package com.example.client.config;
 
-public class AuthConfig {
-    private final String clientId;
-    private final String clientSecret;
-    private final String redirectUri;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-    public AuthConfig(String clientId, String clientSecret, String redirectUri) {
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-        this.redirectUri = redirectUri;
-    }
+@Component
+public class AuthConfig {
+    @Value("${auth.client-id}")
+    private String clientId;
+
+    @Value("${auth.client-secret}")
+    private String clientSecret;
+
+    @Value("${auth.redirect-uri}")
+    private String redirectUri;
 
     public String getClientId() {
         return clientId;
