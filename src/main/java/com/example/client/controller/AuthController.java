@@ -1,6 +1,7 @@
 package com.example.client.controller;
 
 import com.example.client.config.AuthConfig;
+import com.example.authlib.utils.TokenUtils;
 import com.auth0.jwt.interfaces.Claim;
 import com.microsoft.aad.msal4j.IAuthenticationResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-        // Generate login URL for Azure AD
+        // Generate login URL
         String loginUrl = "https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize" +
                 "?client_id=" + authConfig.getClientId() +
                 "&response_type=code" +
@@ -31,9 +32,10 @@ public class AuthController {
 
     @GetMapping("/callback")
     public Map<String, Claim> callback(@RequestParam("code") String code) throws Exception {
-        // Exchange authorization code for token
+        // Exchange auth code for token
         IAuthenticationResult result = TokenUtils.acquireTokenWithAuthCode(code, authConfig);
-        // Extract claims
+
+        // Extract and return claims
         return TokenUtils.extractClaims(result.idToken());
     }
 }
