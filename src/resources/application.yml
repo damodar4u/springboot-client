@@ -5,3 +5,7 @@ server:
     key-store: classpath:sample.jks
     key-store-password: your-keystore-password
     key-store-type: JKS
+  auth:
+    client-id: your-client-id
+    client-secret: your-client-secret
+    redirect-uri: https://localhost:8443/callback
