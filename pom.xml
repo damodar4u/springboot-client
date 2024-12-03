@@ -20,12 +20,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/authlib-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
-
-        <!-- Jackson for JSON -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
